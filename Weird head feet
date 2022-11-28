@@ -1,0 +1,35 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Dupe", "DarkTheme")
+
+
+local Tab = Window:NewTab("Weird head feet")
+
+
+local Section = Tab:NewSection("For poss")
+
+
+
+Section:NewButton("Buy Weird head feet", "buys item", function()
+    local args = {
+        [1] = "Weird head feet"
+    }
+    
+    game:GetService("ReplicatedStorage").RemoteEvents.BuyItemCash:FireServer(unpack(args))
+end)
+
+
+Section:NewToggle("Auto Buy Weird head feet", "auto buys", function(state)
+    if state then
+        _G.on = true
+        while _G.on do
+            wait()
+            local args = {
+                [1] = "Weird head feet"
+            }
+            
+            game:GetService("ReplicatedStorage").RemoteEvents.BuyItemCash:FireServer(unpack(args))
+        end
+    else
+        _G.on = false
+    end
+end)
